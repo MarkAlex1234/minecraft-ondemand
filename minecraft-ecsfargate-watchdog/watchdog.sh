@@ -8,6 +8,7 @@
 [ -n "$DNSZONE" ] || { echo "DNSZONE env variable must be set to the Route53 Hosted Zone ID" ; exit 1; }
 [ -n "$STARTUPMIN" ] || { echo "STARTUPMIN env variable not set, defaulting to a 10 minute startup wait" ; STARTUPMIN=10; }
 [ -n "$SHUTDOWNMIN" ] || { echo "SHUTDOWNMIN env variable not set, defaulting to a 20 minute shutdown wait" ; SHUTDOWNMIN=20; }
+[ -n "$DISCORD_WEBHOOK_URL" ] || { echo "DISCORD_WEBHOOK_URL env variable must be set for Discord notifications" ; exit 1; }
 
 function send_notification ()
 {
@@ -23,6 +24,15 @@ function send_notification ()
   [ -n "$SNSTOPIC" ] && \
   echo "SNS topic set, sending $1 message" && \
   aws sns publish --topic-arn "$SNSTOPIC" --message "$MESSAGETEXT"
+
+   ## Discord Option
+  if [ -n "$DISCORD_WEBHOOK_URL" ]; then
+    echo "Discord Webhook set, sending $1 message"
+    curl -H "Content-Type: application/json" \
+         -X POST \
+         -d "{\"content\": \"$MESSAGETEXT\"}" \
+         "$DISCORD_WEBHOOK_URL"
+  fi
 }
 
 function zero_service ()
