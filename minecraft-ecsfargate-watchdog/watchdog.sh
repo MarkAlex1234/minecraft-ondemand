@@ -28,7 +28,10 @@ function send_notification ()
    ## Discord Option
   [ -n "$DISCORD_WEBHOOK_URL" ] && \
   echo "Discord Webhook set, sending $1 message" && \
-  curl --silent -XPOST -d "Body=$MESSAGETEXT" "$DISCORD_WEBHOOK_URL"
+  curl --silent -X POST \
+       -H "Content-Type: application/json" \
+       -d "{\"content\": \"$MESSAGETEXT\"}" \
+       "$DISCORD_WEBHOOK_URL"
 
 }
 
