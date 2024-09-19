@@ -145,6 +145,10 @@ export interface StackConfig {
    * - CloudWatch Logs for the `minecraft-ecsfargate-watchdog` ECS Container
    */
   debug: boolean;
+  /**
+   * Custom Setting for discord webhooks
+   */
+  discordWebhookURL: string;
 }
 
 export interface MinecraftEditionConfig {
