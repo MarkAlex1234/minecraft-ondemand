@@ -117,6 +117,7 @@ export class DomainStack extends Stack {
         REGION: config.serverRegion,
         CLUSTER: constants.CLUSTER_NAME,
         SERVICE: constants.SERVICE_NAME,
+        DISCORD_WEBHOOK_URL: config.discordWebhookURL,
       },
       logRetention: logs.RetentionDays.THREE_DAYS, // TODO: parameterize
     });
