@@ -20,11 +20,7 @@ function send_notification ()
   echo "Twilio information set, sending $1 message" && \
   curl --silent -XPOST -d "Body=$MESSAGETEXT" -d "From=$TWILIOFROM" -d "To=$TWILIOTO" "https://api.twilio.com/2010-04-01/Accounts/$TWILIOAID/Messages" -u "$TWILIOAID:$TWILIOAUTH"
 
-  ## SNS Option
-  [ -n "$SNSTOPIC" ] && \
-  echo "SNS topic set, sending $1 message" && \
-  aws sns publish --topic-arn "$SNSTOPIC" --message "$MESSAGETEXT"
-
+  echo "Discord Webhook set, sending $1 message to URL: $DISCORD_WEBHOOK_URL"
    ## Discord Option
   [ -n "$DISCORD_WEBHOOK_URL" ] && \
   echo "Discord Webhook set, sending $1 message" && \
@@ -33,6 +29,10 @@ function send_notification ()
        -d "{\"content\": \"$MESSAGETEXT\"}" \
        "$DISCORD_WEBHOOK_URL"
 
+  ## SNS Option
+  [ -n "$SNSTOPIC" ] && \
+  echo "SNS topic set, sending $1 message!" && \
+  aws sns publish --topic-arn "$SNSTOPIC" --message "$MESSAGETEXT"
 }
 
 function zero_service ()
