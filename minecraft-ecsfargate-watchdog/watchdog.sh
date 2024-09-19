@@ -26,13 +26,10 @@ function send_notification ()
   aws sns publish --topic-arn "$SNSTOPIC" --message "$MESSAGETEXT"
 
    ## Discord Option
-  if [ -n "$DISCORD_WEBHOOK_URL" ]; then
-    echo "Discord Webhook set, sending $1 message"
-    curl -H "Content-Type: application/json" \
-         -X POST \
-         -d "{\"content\": \"$MESSAGETEXT\"}" \
-         "$DISCORD_WEBHOOK_URL"
-  fi
+  [ -n "$DISCORD_WEBHOOK_URL" ] && \
+  echo "Discord Webhook set, sending $1 message" && \
+  curl --silent -XPOST -d "Body=$MESSAGETEXT" "$DISCORD_WEBHOOK_URL"
+
 }
 
 function zero_service ()
