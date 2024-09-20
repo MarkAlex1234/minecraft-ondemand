@@ -35,10 +35,9 @@ def lambda_handler(event, context):
             desiredCount=1,
         )
         print("Updated desiredCount to 1")
-        send_discord_message('Server Starting ...')
+        send_discord_message('Server starting (please wait 1 minute before attempting again) ...')
     else:
         print("desiredCount already at 1")
-        send_discord_message('Server Online!')
 
 
 def send_discord_message(message):
