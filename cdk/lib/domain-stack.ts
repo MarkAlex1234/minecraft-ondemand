@@ -118,6 +118,7 @@ export class DomainStack extends Stack {
         CLUSTER: constants.CLUSTER_NAME,
         SERVICE: constants.SERVICE_NAME,
         DISCORD_WEBHOOK_URL: config.discordWebhookURL,
+        TESTING: '123',
       },
       logRetention: logs.RetentionDays.THREE_DAYS, // TODO: parameterize
     });

@@ -228,7 +228,7 @@ export class MinecraftStack extends Stack {
               path.resolve(__dirname, '../../minecraft-ecsfargate-watchdog/')
             )
           : ecs.ContainerImage.fromRegistry(
-              'doctorray/minecraft-ecsfargate-watchdog'
+              'doctorray/minecraft-ecsfargate-watchdog-new'
             ),
         essential: true,
         taskDefinition: taskDefinition,

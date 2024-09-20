@@ -1,5 +1,6 @@
 # version 1.2.0
-# docker pull doctorray/minecraft-ecsfargate-watchdog
+# docker pull doctorray/minecraft-ecsfargate-watchdog-new
+# EDITED 20th SEPT 2024 - ADDS DISCORD WEBHOOK
 
 FROM amazon/aws-cli
 
